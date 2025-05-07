@@ -1,4 +1,4 @@
-# Difference between **Types** and **Interface** in Typescript.
+# 1. Difference between **Types** and **Interface** in Typescript.
 
 In typescript, both **type** and **interface** used a lot and both do similar kinds of stuff but there are some difference.
 Let's see the difference.
@@ -51,3 +51,66 @@ Typescript will not satisfied with the above code where we set interface for str
 But it will not complain if we try with **objects** or **classes**
 
 So, Finally `type` is more flexible and can be used both primitive and non-primitive data, on the otherhand, `interface` is mostly for objects.
+
+
+
+# 2.Using Union and Intersection Types in TypeScript
+
+As, we already know Typescript give us type safety,along with more cool features and two of them are **Union** and **Intersection** types.
+These can be helpful when we are working with data that maybe in different shape or we wan to combine multiple types together.
+
+## Union Types (`|`)
+A **union type** is like `or` type such as it says 'a variable can be hold either this type or that type'
+
+Let's clarify with example:
+```ts
+type Id=string|number
+//here we specifying by the union operator that Id will be either string type or number type
+
+let userId:Id;
+
+userId=101; //no problem
+userId="icerahi" //no problem
+userId=true // not allowed
+```
+So, from the example above we can say union types are super flexible when date can be hold multiple types.
+
+We can also use union with custom types:
+```ts
+type Kutta={
+    name:string;
+    bark():void
+}
+
+type Bilai={
+    name:string;
+    mew():void;
+}
+
+type Pet = Kutta | Bilai;
+```
+
+## Intersection Types (`&`)
+
+An **intersection type** combines multiple types in to one. it say's like 'This must be both of those types'.
+
+Example:
+```ts
+type Name={
+    name:string;
+}
+type Age={
+    age:number;
+}
+
+type Person=Name & Age
+
+const user:Person={
+    name:"imran",
+    age:10,
+}
+```
+This union operator is super useful when we are trying to build up complex types from multiple smaller ones.
+
+
+Finally, We use **union types** (`|`) when a value can be one **of multiple types** and **intersection types** (`&`) when a value needs to be a **combination of multiple types**.
